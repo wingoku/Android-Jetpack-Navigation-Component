@@ -8,8 +8,10 @@ import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.onNavDestinationSelected
 import androidx.navigation.ui.setupActionBarWithNavController
+import androidx.navigation.ui.setupWithNavController
 import kotlinx.android.synthetic.main.activity_main.*
 
 //learned from CODING IN FLOW channel: https://www.youtube.com/watch?v=WWgNCPu8MeQ&list=PLrnPJCHvNZuCamMFswP597mUF-whXoAA6&index=6
@@ -146,6 +148,7 @@ class MainActivity : AppCompatActivity() {
     //this controls navigation
     //doing lateinit cuz we don't have value for navController until onCreate() of the activity is called
     private lateinit var navigationController : NavController
+    private lateinit var appBarConfiguration : AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -156,12 +159,23 @@ class MainActivity : AppCompatActivity() {
         var navHostFragment = supportFragmentManager.findFragmentById(R.id.fragmentHostContainer) as NavHostFragment
         navigationController = navHostFragment.findNavController()
 
+        //we need to pass TOP LEVEL FRAGMENTS in this method otherwise when we switch among
+        //different fragments using bottomNavigationView, we'll see Back button in toolbar
+        //video: https://www.youtube.com/watch?v=llWsm9Pjkpc&list=PLrnPJCHvNZuCamMFswP597mUF-whXoAA6&index=7
+        appBarConfiguration = AppBarConfiguration(setOf(R.id.homeFragment, R.id.searchFragment))
+
         //we have to do this cuz we're using a custom toolbar
         setSupportActionBar(toolbar)
 
         //we do this so that the toolbar can show back/up button and animate those buttons when
         //we move from one fragment to another. NavController sets the back/up buttons on the toolbar automatically
-        setupActionBarWithNavController(navigationController)
+        setupActionBarWithNavController(navigationController, appBarConfiguration)
+
+        //THIS IS IMPORTANT!! IF WE DON'T PASS NAV CONTROLLER TO BottomNavigationView,
+        //when we click on bottomNavigationView items, it WON'T DO ANYTHING!
+        //all the fragments that we want to show in bottomNavView must be added in the menu file
+        //and those fragments must also be added to nav_graph.xml
+        bottomNavigationView.setupWithNavController(navigationController)
     }
 
     //this method is required to handle back/up navigation using toolbar back button.
@@ -177,7 +191,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-//        return item.onNavDestinationSelected(navigationController) || super.onOptionsItemSelected(item)
         return when(item.itemId) {
             //NOTE: ID OF MENU ITEM AND ID OF THE FRAGMENT IN NAV_GRAPH MUST BE SIMILAR OTHERWISE NAV CONTROLLER WON'T
             //OPEN THE FRAGMENT WHEN THE MENU ITEM IS SELECTED!!!!!!!
@@ -188,6 +201,7 @@ class MainActivity : AppCompatActivity() {
                 true
             }
             else -> {
+                println("ïtem clicked ${item.itemId} ")
                 item.onNavDestinationSelected(navigationController) || super.onOptionsItemSelected(item)
             }
         }
