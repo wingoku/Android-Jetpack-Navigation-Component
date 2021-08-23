@@ -161,7 +161,8 @@ class MainActivity : AppCompatActivity() {
         //video: https://www.youtube.com/watch?v=llWsm9Pjkpc&list=PLrnPJCHvNZuCamMFswP597mUF-whXoAA6&index=7
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.homeFragment, R.id.searchFragment),
-            drawerLayout
+            drawerLayout //if we don't add th drawerLayout in appBarConfiguration, appBar/Toolbar
+                        //won't show hamburger menu icon in the top left of the appBar/toolbar
         )
 
         //we have to do this cuz we're using a custom toolbar
