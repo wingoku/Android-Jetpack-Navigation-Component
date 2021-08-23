@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/homeFragment">
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.wingoku.kotlinnavigationcomponenttutorial.fragments.HomeFragment"
+        android:label="home_fragment"
+        tools:layout="@layout/home_fragment">
+        <action
+            android:id="@+id/action_homeFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.wingoku.kotlinnavigationcomponenttutorial.fragments.LoginFragment"
+        android:label="login_fragment"
+        tools:layout="@layout/login_fragment">
+        <action
+            android:id="@+id/action_loginFragment_to_finalFragment"
+            app:destination="@id/finalFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/finalFragment"
+        android:name="com.wingoku.kotlinnavigationcomponenttutorial.fragments.FinalFragment"
+        android:label="fragment_final"
+        tools:layout="@layout/fragment_final">
+        <action
+            android:id="@+id/action_finalFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
+            app:popUpTo="@id/homeFragment"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="userName"
+            app:argType="string" />
+        <argument
+            android:name="password"
+            app:argType="string" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.wingoku.kotlinnavigationcomponenttutorial.fragments.SettingsFragment"
+        android:label="settings_fragment"
+        tools:layout="@layout/settings_fragment" />
+    <fragment
+        android:id="@+id/myGlobalActionFragment"
+        android:name="com.wingoku.kotlinnavigationcomponenttutorial.fragments.MyGlobalActionFragment"
+        android:label="fragment_global_action_example"
+        tools:layout="@layout/fragment_global_action_example" />
+    <action
+        android:id="@+id/action_global_myGlobalActionFragment"
+        app:destination="@id/myGlobalActionFragment" />
+</navigation>
