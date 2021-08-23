@@ -8,10 +8,7 @@ import androidx.appcompat.app.AppCompatDialogFragment
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.onNavDestinationSelected
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.ui.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 //learned from CODING IN FLOW channel: https://www.youtube.com/watch?v=WWgNCPu8MeQ&list=PLrnPJCHvNZuCamMFswP597mUF-whXoAA6&index=6
@@ -162,7 +159,10 @@ class MainActivity : AppCompatActivity() {
         //we need to pass TOP LEVEL FRAGMENTS in this method otherwise when we switch among
         //different fragments using bottomNavigationView, we'll see Back button in toolbar
         //video: https://www.youtube.com/watch?v=llWsm9Pjkpc&list=PLrnPJCHvNZuCamMFswP597mUF-whXoAA6&index=7
-        appBarConfiguration = AppBarConfiguration(setOf(R.id.homeFragment, R.id.searchFragment))
+        appBarConfiguration = AppBarConfiguration(
+            setOf(R.id.homeFragment, R.id.searchFragment),
+            drawerLayout
+        )
 
         //we have to do this cuz we're using a custom toolbar
         setSupportActionBar(toolbar)
@@ -176,13 +176,18 @@ class MainActivity : AppCompatActivity() {
         //all the fragments that we want to show in bottomNavView must be added in the menu file
         //and those fragments must also be added to nav_graph.xml
         bottomNavigationView.setupWithNavController(navigationController)
+
+        //THIS IS IMPORTANT!! IF WE DON'T PASS NAV CONTROLLER TO NAVIGATION VIEW OF DRAWER LAYOUT,
+        // it'll show items if we provide app:menu="@menu/bottom_navigation_view_menu" in navigationView in xml
+        //when we click on items in Navigation view of drawer layout , it WON'T DO ANYTHING!
+        navigationView.setupWithNavController(navigationController)
     }
 
     //this method is required to handle back/up navigation using toolbar back button.
     //we need to call navigationController.navigateUp() inside this method to tell navController
     //user pressed a back button in TOOLBAR only (android back button still works) and we need to pop current visible fragment off the stack!
     override fun onSupportNavigateUp(): Boolean {
-        return navigationController.navigateUp() || super.onSupportNavigateUp()
+        return navigationController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {

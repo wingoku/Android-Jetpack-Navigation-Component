@@ -5,7 +5,7 @@
       <map>
         <entry key="app/src/main/res/drawable/ic_home.xml" value="0.3260416666666667" />
         <entry key="app/src/main/res/drawable/ic_search.xml" value="0.3260416666666667" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.375" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="app/src/main/res/layout/fragment_final.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_global_action_example.xml" value="0.3098958333333333" />
         <entry key="app/src/main/res/layout/fragment_search.xml" value="0.3098958333333333" />
