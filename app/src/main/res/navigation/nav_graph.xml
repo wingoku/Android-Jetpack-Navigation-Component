@@ -21,6 +21,14 @@
         <action
             android:id="@+id/action_loginFragment_to_finalFragment"
             app:destination="@id/finalFragment" />
+        <argument
+            android:name="userName"
+            android:defaultValue="@null"
+            app:argType="string"
+            app:nullable="true" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="app://login/{userName}" />
     </fragment>
     <fragment
         android:id="@+id/finalFragment"

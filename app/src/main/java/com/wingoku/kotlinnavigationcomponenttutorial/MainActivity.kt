@@ -138,6 +138,10 @@ import kotlinx.android.synthetic.main.activity_main.*
        NavGraphDirections generated class.
 
        To read about its USE CASE, go to MyGlobalActionFragment and read the comments
+       __________________________________________________________________________________________
+
+        leared deeplink from Florian CodingInFlow
+       https://www.youtube.com/watch?v=hEJ78_KLcfA&list=PLrnPJCHvNZuCamMFswP597mUF-whXoAA6&index=9
  */
 
 class MainActivity : AppCompatActivity() {

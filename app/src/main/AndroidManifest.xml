@@ -17,6 +17,9 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
+            <!-- THIS IS IMPORTANT TO ADD. THIS WILL ADD DEEP LINKING ACROSS THE ENTIRE ACTIVITY -->
+            <nav-graph android:value="@navigation/nav_graph" />
         </activity>
     </application>
 

@@ -4,13 +4,19 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
 import com.wingoku.kotlinnavigationcomponenttutorial.R
 import kotlinx.android.synthetic.main.login_fragment.*
 
 class LoginFragment : Fragment(R.layout.login_fragment) {
 
+    private val args : LoginFragmentArgs by navArgs()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val userNameFromDeepLink = args.userName
+        tvUserName.setText(userNameFromDeepLink)
 
         buttonLogin.setOnClickListener {
             val userName = tvUserName.text.toString()
