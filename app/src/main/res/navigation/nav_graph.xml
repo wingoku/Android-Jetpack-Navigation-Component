@@ -8,7 +8,7 @@
         android:id="@+id/homeFragment"
         android:name="com.wingoku.kotlinnavigationcomponenttutorial.fragments.HomeFragment"
         android:label="home_fragment"
-        tools:layout="@layout/home_fragment">
+        tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_loginFragment"
             app:destination="@id/loginFragment" />
@@ -17,7 +17,7 @@
         android:id="@+id/loginFragment"
         android:name="com.wingoku.kotlinnavigationcomponenttutorial.fragments.LoginFragment"
         android:label="login_fragment"
-        tools:layout="@layout/login_fragment">
+        tools:layout="@layout/fragment_login">
         <action
             android:id="@+id/action_loginFragment_to_finalFragment"
             app:destination="@id/finalFragment" />
@@ -51,7 +51,7 @@
         android:id="@+id/settingsFragment"
         android:name="com.wingoku.kotlinnavigationcomponenttutorial.fragments.SettingsFragment"
         android:label="settings_fragment"
-        tools:layout="@layout/settings_fragment" />
+        tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/myGlobalActionFragment"
         android:name="com.wingoku.kotlinnavigationcomponenttutorial.fragments.MyGlobalActionFragment"

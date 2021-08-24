@@ -8,7 +8,7 @@ import androidx.navigation.fragment.navArgs
 import com.wingoku.kotlinnavigationcomponenttutorial.R
 import kotlinx.android.synthetic.main.login_fragment.*
 
-class LoginFragment : Fragment(R.layout.login_fragment) {
+class LoginFragment : Fragment(R.layout.fragment_login) {
 
     private val args : LoginFragmentArgs by navArgs()
 

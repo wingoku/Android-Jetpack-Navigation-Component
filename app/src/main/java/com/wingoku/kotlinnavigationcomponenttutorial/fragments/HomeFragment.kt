@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.wingoku.kotlinnavigationcomponenttutorial.R
 import kotlinx.android.synthetic.main.home_fragment.*
 
-class HomeFragment : Fragment(R.layout.home_fragment) {
+class HomeFragment : Fragment(R.layout.fragment_home) {
 
     companion object {
         val TAG = "HomeFragment"
